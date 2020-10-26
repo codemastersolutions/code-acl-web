@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  code-acl-web:
+    build: ./.docker
+    container_name: code-acl-web
+    restart: always
+    tty: true
+    ports:
+      - "5502:5500"
