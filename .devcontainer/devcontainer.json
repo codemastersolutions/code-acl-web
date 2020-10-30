@@ -26,7 +26,6 @@
 	"extensions": [
 		"k--kato.intellij-idea-keybindings",
 		"mcright.auto-save",
-		"ms-vscode.cmake-tools",
 		"docsmsft.docs-yaml",
 		"docsmsft.docs-preview",
 		"docsmsft.docs-markdown",
@@ -38,7 +37,6 @@
 		"austenc.laravel-blade-spacer",
 		"glitchbl.laravel-create-view",
 		"onecentlin.laravel-extension-pack",
-		"ms-ossdata.vscode-postgresql",
 		"msjsdiag.vscode-react-native",
 		"ms-vscode.vscode-typescript-tslint-plugin",
 		"felixfbecker.php-intellisense",

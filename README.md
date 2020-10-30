@@ -2,7 +2,12 @@
     <a href="https://codemastersolucoes.com" target="_blank">
         <img data-testid="logo" src="https://cms-public-images.s3.amazonaws.com/logo.png">
     </a>
-    <h1 align="center">Pacote para Controle de Acesso/Autorização</h1>
+    <h1 align="center">Frontend para o pacote CodeAcl</h1>
+    <h5 align="center">
+        <a href="https://github.com/codemastersolutions/code-acl" target="_blank">
+            CodeAcl - Pacote para Controle de Autorização
+        </a>
+    </h5>
 </p>
 
 [![License](https://poser.pugx.org/codemastersolutions/code-acl-web/license)](https://github.com/codemastersolutions/code-acl-web/blob/HEAD/LICENSE.md)
@@ -30,6 +35,11 @@
 ``` bash
 composer require codemastersolutions/code-acl-web
 ```
+
+## Dependências
+
+- [CodeAcl - Pacote para Controle de Autorização](https://github.com/codemastersolutions/code-acl)
+
 
 ## Instruções de uso
 

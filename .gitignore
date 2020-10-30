@@ -9,6 +9,7 @@ storage
 
 .DS_Store
 /dist
+/app
 
 # local env files
 .env.local
