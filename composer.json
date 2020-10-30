@@ -1,0 +1,57 @@
+{
+    "name": "codemastersolutions/code-acl-web",
+    "description": "Frontend para o pacote CodeAcl",
+    "keywords": [
+        "codemaster",
+        "solutions",
+        "laravel",
+        "permission",
+        "permissions",
+        "roles",
+        "acl",
+        "web",
+        "security"
+    ],
+    "type": "package",
+    "homepage": "https://github.com/codemastersolutions/code-acl-web",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gilson Gabriel",
+            "email": "gilson@codemastersolucoes.com",
+            "homepage": "https://codemastersolucoes.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CodeMaster\\CodeAclWeb\\": "src"
+        },
+        "files": [
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CodeMaster\\CodeAclWeb\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CodeMaster\\CodeAclWeb\\CodeAclWebServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4",
+        "codemastersolutions/code-acl": "^0.1.0"
+    },
+    "require-dev": {
+    },
+    "scripts": {
+    }
+}
