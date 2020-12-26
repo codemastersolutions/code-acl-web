@@ -23,7 +23,12 @@ mix
     .js('./resources/js/bootstrap.js', './public/vendor/code-acl-web/js/bootstrap.min.js')
     .js('./resources/js/app.js', './public/vendor/code-acl-web/js/app.min.js')
     .setPublicPath('./public/vendor/code-acl-web')
-    .extract(['vue', 'jquery']);
+    .extract(['vue', 'jquery'])
+    .sourceMaps();
+
+if (process.env.MIX_COPY_ASSETS == 'true') {
+    mix.copy('./public/vendor', './../../../public/vendor');
+}
 
 if (mix.inProduction()) {
     mix.version();

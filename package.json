@@ -30,7 +30,11 @@
     "vue-router": "^3.4.5",
     "vue-template-compiler": "^2.6.10"
   },
-  "dependencies": {},
+  "dependencies": {
+    "moment-timezone": "^0.5.32",
+    "vue-moment": "^4.1.0",
+    "vuejs-paginate": "^2.1.0"
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions"
