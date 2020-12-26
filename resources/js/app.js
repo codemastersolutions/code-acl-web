@@ -6,6 +6,32 @@
 
 window.Vue = require('vue');
 
+import moment from 'moment-timezone';
+require('moment/locale/pt-br');
+
+Vue.filter('pt_br', function(value) {
+    if (value) {
+        const newDate = moment.tz(value, 'UTC');
+        return moment.tz(newDate, 'America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss');
+    }
+});
+
+import axios from 'axios';
+window.axios = axios;
+
+window.urls = {
+    baseURL: 'http://localhost:8000',
+    pathUrl: '/cms/code-acl-web',
+    login: '/login',
+    graphqlApi: '/graphql/code_acl',
+    sanctumCsrf: '/sanctum/csrf-cookie',
+};
+
+window.api = window.axios.create({
+    baseURL: window.urls.baseURL,
+    withCredentials: true
+});
+
 //Import progressbar
 require('./progressbar');
 
@@ -15,19 +41,21 @@ require('./customEvents');
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+import Paginate from 'vuejs-paginate';
+Vue.component('paginate', Paginate);
+
 //Import Sweetalert2
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
 const SwalQuestion = Swal.mixin({
     customClass: {
-        confirmButton: 'btn btn-primary btn-square ml-5',
+        confirmButton: 'btn btn-primary btn-square ml-3',
         cancelButton: 'btn btn-danger btn-square'
     },
     buttonsStyling: false,
     allowOutsideClick: false,
     reverseButtons: true,
-    text: 'Esta ação não poderá ser desfeita!',
     icon: 'question',
     showCancelButton: true,
     cancelButtonText: 'Cancelar',
@@ -45,6 +73,31 @@ const SwalSuccess = Swal.mixin({
     confirmButtonText: 'Fechar',
 });
 
+const SwalError = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-danger btn-square'
+    },
+    buttonsStyling: false,
+    allowOutsideClick: true,
+    icon: 'error',
+    showCancelButton: false,
+    confirmButtonText: 'Fechar',
+});
+
+const swalLoginForm = Swal.mixin({
+    title: 'Multiple inputs',
+    html:
+        '<input id="swal-input1" class="swal2-input">' +
+        '<input id="swal-input2" class="swal2-input">',
+    focusConfirm: false,
+    preConfirm: () => {
+        return [
+            document.getElementById('swal-input1').value,
+            document.getElementById('swal-input2').value
+        ]
+    }
+});
+
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -60,6 +113,7 @@ const Toast = Swal.mixin({
 window.Toast = Toast;
 window.SwalQuestion = SwalQuestion;
 window.SwalSuccess = SwalSuccess;
+window.SwalError = SwalError;
 
 //Import v-from
 import { Form, HasError, AlertError } from 'vform';
