@@ -3,7 +3,11 @@
 <head>
     <!-- Meta Information -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CodeACL - Controle de Acesso de Usuários">
+    <meta name="author" content="Gilson Gabriel - codemastersolucoes.com">
+    <meta name="keyword" content="Laravel,ACL,CodeMaster,Solucoes,CodeACL,CoreUI">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="robots" content="noindex, nofollow">
 
@@ -14,7 +18,7 @@
     <!-- Style sheets-->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('/vendor/code-acl-web/css/free.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('/vendor/code-acl-web/css/flag.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('/vendor/code-acl-web/css/flag.min.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('/vendor/code-acl-web/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/vendor/code-acl-web/css/anime.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/vendor/code-acl-web/css/custom.min.css') }}" rel="stylesheet">
