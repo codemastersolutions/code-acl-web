@@ -96,6 +96,5 @@ class CodeAclWebServiceProvider extends ServiceProvider
     protected function registerViews()
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'code-acl-web');
-        $this->load
     }
 }
