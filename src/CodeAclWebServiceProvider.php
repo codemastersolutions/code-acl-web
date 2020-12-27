@@ -73,10 +73,18 @@ class CodeAclWebServiceProvider extends ServiceProvider
      */
     private function registerPublishing()
     {
-        if (function_exists('config_path')) { // function not available and 'publish' not relevant in Lumen
-            $this->publishes([
-                __DIR__.'/../config/code-acl-web.php' => config_path('code-acl-web.php'),
-            ], 'config');
+        if ($this->app->runningInConsole()) {
+            if (function_exists('config_path')) { // function not available and 'publish' not relevant in Lumen
+                $this->publishes([
+                    __DIR__.'/../config/code-acl-web.php' => config_path('code-acl-web.php'),
+                ], 'codeaclweb-config');
+            }
+
+            if (function_exists('public_path')) {
+                $this->publishes([
+                    __DIR__.'/../dist' => public_path('vendor/code-acl-web'),
+                ], 'codeaclweb-assets');
+            }
         }
     }
 
@@ -88,5 +96,6 @@ class CodeAclWebServiceProvider extends ServiceProvider
     protected function registerViews()
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'code-acl-web');
+        $this->load
     }
 }
