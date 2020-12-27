@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="robots" content="noindex, nofollow">
 
-    <link rel="shortcut icon" href="{{ asset('/vendor/cms-acl-web/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('/vendor/cms-acl-web/img/favicon.ico') }}">
 
     <title>CodeACL{{ config('app.name') ? ' - ' . config('app.name') : '' }}</title>
 
