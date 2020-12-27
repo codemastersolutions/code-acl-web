@@ -27,14 +27,13 @@ mix
     .copy('./node_modules/anime.css/anime.min.css', './public/vendor/code-acl-web/css')
     .copy('./resources/img', './public/vendor/code-acl-web/img')
     .copy('./resources/coreui-free/fonts', './public/vendor/code-acl-web/fonts')
-    .copy('./resources/coreui-free/icons/sprites/avatar.svg', './public/vendor/code-acl-web/icons')
-    .copy('./resources/coreui-free/icons/sprites/free.svg', './public/vendor/code-acl-web/icons')
+    .copy('./resources/coreui-free/icons', './public/vendor/code-acl-web/icons')
     .copy('./resources/coreui-free/js', './public/vendor/code-acl-web/js')
     .js('./resources/js/bootstrap.js', './public/vendor/code-acl-web/js/bootstrap.min.js')
     .js('./resources/js/app.js', './public/vendor/code-acl-web/js/app.min.js')
     .setPublicPath('./public/vendor/code-acl-web')
     .extract(['vue', 'jquery'])
-    .sourceMaps(productionSourceMaps, 'source-map')
+    .sourceMaps(productionSourceMaps, 'source-map');
 
 if (process.env.MIX_COPY_ASSETS == 'true') {
     mix.copy('./public/vendor', './../../../public/vendor');
