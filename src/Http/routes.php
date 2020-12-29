@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 $view = 'code-acl-web::layout';
 
+Route::get('/', function() use ($view) {
+    return view($view);
+});
+
+Route::get('/code-acl-web', function() use ($view) {
+    return view($view);
+});
+
 Route::get('/code-acl-web/modules', function() use ($view) {
     return view($view);
 });
