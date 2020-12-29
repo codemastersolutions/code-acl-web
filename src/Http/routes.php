@@ -2,6 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/{path?}/{path2?}/{path3?}/{path4?}/{path5?}', function() {
-    return view('code-acl-web::layout');
+$view = 'code-acl-web::layout';
+
+Route::get('/code-acl-web/modules', function() use ($view) {
+    return view($view);
+});
+
+Route::get('/code-acl-web/permissions', function() use ($view) {
+    return view($view);
+});
+
+Route::get('/code-acl-web/roles', function() use ($view) {
+    return view($view);
+});
+
+Route::get('/code-acl-web/systems', function() use ($view) {
+    return view($view);
+});
+
+Route::get('/code-acl-web/users', function() use ($view) {
+    return view($view);
 });

@@ -2,6 +2,6 @@
 
 return [
     'domain' => env('CODEACL_DOMAIN', null),
-    'path' => env('CODEACL_PATH', 'cms/code-acl-web'),
+    'route_prefix' => env('CODEACL_PATH', 'cms'),
     'middleware' => 'web'
 ];
