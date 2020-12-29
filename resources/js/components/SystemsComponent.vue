@@ -87,7 +87,7 @@
             </div>
         </div>
 
-        <form id="form" @submit.prevent="editMode ? updateSystems() : storeSystem()">
+        <form id="form" @submit.prevent="editMode ? updateSystem() : storeSystem()">
             <div class="modal fade" id="modalSystem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content flat">
@@ -668,7 +668,7 @@
                     return 0;
                 });
             },
-            updateSystems() {
+            updateSystem() {
                 const query = {
                     query: `
                         mutation updateSystems($idOrSlug: String!, $name: String!) {

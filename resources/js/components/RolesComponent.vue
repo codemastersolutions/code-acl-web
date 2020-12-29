@@ -983,7 +983,7 @@
                     return 0;
                 });
             },
-            updateRoles() {
+            updateRole() {
                 const query = {
                     query: `
                         mutation updateRoles($idOrSlug: String!, $name: String!) {
