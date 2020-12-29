@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header pt-1 pb-1">
                         <div class="row align-items-center">
                             <div class="col-sm-12 col-md-5 col-lg-4">
                                 <h5>Módulos</h5>

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-sm-6 col-md-2">
-                <router-link :to="getUrl('modules')">
+                <router-link :to="{ name: 'modules'}">
                     <div class="card text-white bg-info" title="Clique para acessar os detahles dos módulos">
                         <div class="card-body">
                             <div class="text-muted text-right mb-2">
@@ -21,7 +21,7 @@
                 </router-link>
             </div>
             <div class="col-sm-6 col-md-2">
-                <router-link :to="getUrl('roles')">
+                <router-link :to="{ name: 'roles'}">
                     <div class="card text-white bg-primary">
                         <div class="card-body">
                             <div class="text-muted text-right mb-2">
@@ -40,7 +40,7 @@
                 </router-link>
             </div>
             <div class="col-sm-6 col-md-2">
-                <router-link :to="getUrl('permissions')">
+                <router-link :to="{ name: 'permissions'}">
                     <div class="card text-white bg-success">
                         <div class="card-body">
                             <div class="text-muted text-right mb-2">
@@ -59,7 +59,7 @@
                 </router-link>
             </div>
             <div class="col-sm-6 col-md-2">
-                <router-link :to="getUrl('systems')">
+                <router-link :to="{ name: 'systems'}">
                     <div class="card text-white bg-danger">
                         <div class="card-body">
                             <div class="text-muted text-right mb-2">
@@ -78,7 +78,7 @@
                 </router-link>
             </div>
             <div class="col-sm-6 col-md-2">
-                <router-link :to="getUrl('users')">
+                <router-link :to="{ name: 'users'}">
                     <div class="card text-white bg-warning">
                         <div class="card-body">
                             <div class="text-muted text-right mb-2">
@@ -151,9 +151,6 @@
                     this.summary.systems = response?.data?.data?.systems_paginated?.total || 0;
                     this.summary.users = response?.data?.data?.users_paginated?.total || 0;
                 });
-            },
-            getUrl(path) {
-                return `${window.urls.pathUrl}/${path}`
             }
         }
     }

@@ -61,7 +61,7 @@ class CodeAclWebServiceProvider extends ServiceProvider
         return [
             'domain' => config('code-acl-web.domain', null),
             'namespace' => 'CodeMaster\CodeAclWeb\Http\Controllers',
-            'prefix' => config('code-acl-web.path'),
+            'prefix' => config('code-acl-web.route_prefix'),
             'middleware' => config('code-acl-web.middleware', 'web'),
         ];
     }

@@ -3,7 +3,7 @@
         <button class="c-header-toggler c-class-toggler d-lg-none mr-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
             <span class="c-header-toggler-icon"></span>
         </button>
-        <router-link class="c-header-brand d-sm-none" to="/cms/code-acl-web">
+        <router-link class="c-header-brand d-sm-none" :to="{ name: 'home'}">
             <img class="c-header-brand" src="/vendor/code-acl-web/img/logo_h_cms.png" alt="CodeACL Logo"/>
         </router-link>
         <button class="c-header-toggler c-class-toggler ml-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
@@ -43,7 +43,7 @@
     </ul>
     <div class="c-subheader px-3">
         <ol class="breadcrumb border-0 m-0">
-            <li class="breadcrumb-item"><router-link to="/cms/code-acl-web">Dashboard</router-link></li>
+            <li class="breadcrumb-item"><router-link :to="{ name: 'home'}">Dashboard</router-link></li>
         </ol>
     </div>
     <form id="logout-form" :action="urlLogout" method="POST"></form>

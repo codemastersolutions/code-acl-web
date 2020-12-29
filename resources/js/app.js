@@ -122,12 +122,7 @@ Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
 
 //Routes
-import { routes } from './routes';
-
-const router = new VueRouter({
-    mode: 'history',
-    routes,
-});
+import { router } from './router';
 
 /**
  * The following block of code may be used to automatically register your
