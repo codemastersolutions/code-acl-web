@@ -341,7 +341,7 @@
             addUserModule(user) {
                 this.executeDB({
                     query: `
-                        mutation attachUser($modelIdOrSlug: String!, $relationIdOrSlug: String!) {
+                        mutation addUserModule($modelIdOrSlug: String!, $relationIdOrSlug: String!) {
                             give_module_to_user(modelIdOrSlug: $modelIdOrSlug, relationIdOrSlug: $relationIdOrSlug,)
                         }
                     `,
@@ -357,13 +357,13 @@
                         this.searchUsers();
                         Toast.fire({ icon: 'success', title: `Usuário vinculado com sucesso!` });
                     } else if (response?.data?.errors?.length > 0) {
-                        SwalError.fire({
-                            title: `Falha ao vincular o usuário ao módulo!`,
-                            footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                        });
+                        throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                     }
                 }).catch(err => {
-                    Toast.fire({ icon: 'error', title: `Falha ao vincular o usuário!` });
+                    SwalError.fire({
+                        title: `Falha ao vincular o usuário!`,
+                        footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                    });
                 });
             },
             clearUsersSearched() {
@@ -391,13 +391,13 @@
                                 $('#modalModule').modal('hide');
                                 Toast.fire({ icon: 'success', title: `Módulo excluído com sucesso!` });
                             } else if (response?.data?.errors?.length > 0) {
-                                SwalError.fire({
-                                    title: `Falha ao excluir a módulo!`,
-                                    footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                                });
+                                throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                             }
                         }).catch(err => {
-                            Toast.fire({ icon: 'error', title: `Falha ao excluir a módulo!` });
+                            SwalError.fire({
+                                title: `Falha ao excluir a módulo!`,
+                                footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                            });
                         });
                     }
                 });
@@ -539,7 +539,7 @@
                     if (result.value) {
                         this.executeDB({
                             query: `
-                                mutation detachUser($modelIdOrSlug: String!, $relationIdOrSlug: String!) {
+                                mutation removeUserModule($modelIdOrSlug: String!, $relationIdOrSlug: String!) {
                                     detach_module_to_user(modelIdOrSlug: $modelIdOrSlug, relationIdOrSlug: $relationIdOrSlug,)
                                 }
                             `,
@@ -553,13 +553,13 @@
                                 $('#modalModule').modal('hide');
                                 Toast.fire({ icon: 'success', title: `Usuário desvinculado com sucesso!` });
                             } else if (response?.data?.errors?.length > 0) {
-                                SwalError.fire({
-                                    title: `Falha ao desvincular o usuário!`,
-                                    footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                                });
+                                throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                             }
                         }).catch(err => {
-                            Toast.fire({ icon: 'error', title: `Falha ao desvincular o usuário!` });
+                            SwalError.fire({
+                                title: `Falha ao desvincular o usuário!`,
+                                footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                            });
                         });
                     }
                 });
@@ -657,13 +657,13 @@
                         $('#modalModule').modal('hide');
                         Toast.fire({ icon: 'success', title: `Módulo incluído com sucesso!` });
                     } else if (response?.data?.errors?.length > 0) {
-                        SwalError.fire({
-                            title: `Falha ao incluir o módulo!`,
-                            footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                        });
+                        throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                     }
                 }).catch(err => {
-                    Toast.fire({ icon: 'error', title: `Falha ao incluir módulo!` });
+                    SwalError.fire({
+                        title: `Falha ao incluir módulo!`,
+                        footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                    });
                 });
             },
             sortModules() {
@@ -692,7 +692,7 @@
 
                 this.executeDB(query).then(response => {
                     if (response?.data?.errors?.length > 0) {
-                        SwalError.fire({ title: `Falha ao atualizar módulo!`, footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}` });
+                        throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                     } else {
                         const module = response?.data?.data?.update_module;
 
@@ -708,7 +708,10 @@
                         Toast.fire({ icon: 'success', title: `Módulo atualizado com sucesso!` });
                     }
                 }).catch(err => {
-                    Toast.fire({ icon: 'error', title: `Falha ao atualizar módulo!` });
+                    SwalError.fire({
+                        title: `Falha ao atualizar módulo!`,
+                        footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                    });
                 });
             },
             usersModule(module) {

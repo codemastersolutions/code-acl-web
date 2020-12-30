@@ -519,19 +519,19 @@
                         this.searchPermissions();
                         Toast.fire({ icon: 'success', title: `Permissão vinculada com sucesso!` });
                     } else if (response?.data?.errors?.length > 0) {
-                        SwalError.fire({
-                            title: `Falha ao vincular a permissão ao papel!`,
-                            footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                        });
+                        throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                     }
                 }).catch(err => {
-                    Toast.fire({ icon: 'error', title: `Falha ao vincular a permissão!` });
+                    SwalError.fire({
+                        title: `Falha ao vincular a permissão!`,
+                        footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                    });
                 });
             },
             addUserRole(user) {
                 this.executeDB({
                     query: `
-                        mutation attachUser($modelIdOrSlug: String!, $relationIdOrSlug: String!) {
+                        mutation addUserRole($modelIdOrSlug: String!, $relationIdOrSlug: String!) {
                             give_role_to_user(modelIdOrSlug: $modelIdOrSlug, relationIdOrSlug: $relationIdOrSlug,)
                         }
                     `,
@@ -547,13 +547,13 @@
                         this.searchUsers();
                         Toast.fire({ icon: 'success', title: `Usuário vinculado com sucesso!` });
                     } else if (response?.data?.errors?.length > 0) {
-                        SwalError.fire({
-                            title: `Falha ao vincular o usuário ao papel!`,
-                            footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                        });
+                        throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                     }
                 }).catch(err => {
-                    Toast.fire({ icon: 'error', title: `Falha ao vincular o usuário!` });
+                    SwalError.fire({
+                        title: `Falha ao vincular o usuário!`,
+                        footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                    });
                 });
             },
             clearPermissionsSearched() {
@@ -586,13 +586,13 @@
                                 $('#modalRole').modal('hide');
                                 Toast.fire({ icon: 'success', title: `Papel incluído com sucesso!` });
                             } else if (response?.data?.errors?.length > 0) {
-                                SwalError.fire({
-                                    title: `Falha ao excluir a papel!`,
-                                    footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                                });
+                                throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                             }
                         }).catch(err => {
-                            Toast.fire({ icon: 'error', title: `Falha ao excluir a papel!` });
+                            SwalError.fire({
+                                title: `Falha ao excluir a papel!`,
+                                footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                            });
                         });
                     }
                 });
@@ -782,7 +782,7 @@
                     if (result.value) {
                         this.executeDB({
                             query: `
-                                mutation detachPermission($modelIdOrSlug: String!, $relationIdOrSlug: String!) {
+                                mutation removePermissionRole($modelIdOrSlug: String!, $relationIdOrSlug: String!) {
                                     detach_permission_to_role(modelIdOrSlug: $modelIdOrSlug, relationIdOrSlug: $relationIdOrSlug,)
                                 }
                             `,
@@ -791,19 +791,18 @@
                                 relationIdOrSlug: permission.id,
                             }
                         }).then(response => {
-                            console.log(response);
                             if (response?.data?.data?.detach_permission_to_role) {
                                 this.getPermissionsRole();
                                 $('#modalPermission').modal('hide');
                                 Toast.fire({ icon: 'success', title: `Permissão desvinculada com sucesso!` });
                             } else if (response?.data?.errors?.length > 0) {
-                                SwalError.fire({
-                                    title: `Falha ao desvincular a permissão!`,
-                                    footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                                });
+                                throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                             }
                         }).catch(err => {
-                            Toast.fire({ icon: 'error', title: `Falha ao desvincular a permissão!` });
+                            SwalError.fire({
+                                title: `Falha ao desvincular a permissão!`,
+                                footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                            });
                         });
                     }
                 });
@@ -815,7 +814,7 @@
                     if (result.value) {
                         this.executeDB({
                             query: `
-                                mutation detachUser($modelIdOrSlug: String!, $relationIdOrSlug: String!) {
+                                mutation removeUserRole($modelIdOrSlug: String!, $relationIdOrSlug: String!) {
                                     detach_role_to_user(modelIdOrSlug: $modelIdOrSlug, relationIdOrSlug: $relationIdOrSlug,)
                                 }
                             `,
@@ -829,13 +828,13 @@
                                 $('#modalRole').modal('hide');
                                 Toast.fire({ icon: 'success', title: `Usuário desvinculado com sucesso!` });
                             } else if (response?.data?.errors?.length > 0) {
-                                SwalError.fire({
-                                    title: `Falha ao desvincular o usuário!`,
-                                    footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                                });
+                                throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                             }
                         }).catch(err => {
-                            Toast.fire({ icon: 'error', title: `Falha ao desvincular o usuário!` });
+                            SwalError.fire({
+                                title: `Falha ao desvincular o usuário!`,
+                                footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                            });
                         });
                     }
                 });
@@ -967,13 +966,13 @@
                         $('#modalRole').modal('hide');
                         Toast.fire({ icon: 'success', title: `Papel incluído com sucesso!` });
                     } else if (response?.data?.errors?.length > 0) {
-                        SwalError.fire({
-                            title: `Falha ao incluir o papel!`,
-                            footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                        });
+                        throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                     }
                 }).catch(err => {
-                    Toast.fire({ icon: 'error', title: `Falha ao incluir papel!` });
+                    SwalError.fire({
+                        title: `Falha ao incluir papel!`,
+                        footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                    });
                 });
             },
             sortRoles() {
@@ -986,7 +985,7 @@
             updateRole() {
                 const query = {
                     query: `
-                        mutation updateRoles($idOrSlug: String!, $name: String!) {
+                        mutation updateRole($idOrSlug: String!, $name: String!) {
                             update_role(idOrSlug: $idOrSlug, name: $name) {
                                 name,
                                 slug,
@@ -1002,10 +1001,7 @@
 
                 this.executeDB(query).then(response => {
                     if (response?.data?.errors?.length > 0) {
-                        SwalError.fire({
-                            title: `Falha ao atualizar papel!`,
-                            footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                        });
+                        throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                     } else {
                         const role = response?.data?.data?.update_role;
 
@@ -1021,7 +1017,10 @@
                         Toast.fire({ icon: 'success', title: `Papel atualizado com sucesso!` });
                     }
                 }).catch(err => {
-                    Toast.fire({ icon: 'error', title: `Falha ao atualizar papel!` });
+                    SwalError.fire({
+                        title: `Papel atualizado com sucesso!`,
+                        footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                    });
                 });
             },
             usersRole(role) {
