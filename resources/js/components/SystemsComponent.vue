@@ -351,13 +351,13 @@
                         this.searchUsers();
                         Toast.fire({ icon: 'success', title: `Usuário vinculado com sucesso!` });
                     } else if (response?.data?.errors?.length > 0) {
-                        SwalError.fire({
-                            title: `Falha ao vincular o usuário!`,
-                            footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                        });
+                        throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                     }
                 }).catch(err => {
-                    Toast.fire({ icon: 'error', title: `Falha ao vincular o usuário!` });
+                    SwalError.fire({
+                        title: `Falha ao vincular o usuário!`,
+                        footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                    });
                 });
             },
             clearUsersSearched() {
@@ -385,13 +385,13 @@
                                 $('#modalSystem').modal('hide');
                                 Toast.fire({ icon: 'success', title: `Sistema incluído com sucesso!` });
                             } else if (response?.data?.errors?.length > 0) {
-                                SwalError.fire({
-                                    title: `Falha ao excluir a sistema!`,
-                                    footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                                });
+                                throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                             }
                         }).catch(err => {
-                            Toast.fire({ icon: 'error', title: `Falha ao excluir a sistema!` });
+                            SwalError.fire({
+                                title: `Falha ao excluir a sistema!`,
+                                footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                            });
                         });
                     }
                 });
@@ -548,13 +548,13 @@
                                 $('#modalSystem').modal('hide');
                                 Toast.fire({ icon: 'success', title: `Usuário desvinculado com sucesso!` });
                             } else if (response?.data?.errors?.length > 0) {
-                                SwalError.fire({
-                                    title: `Falha ao desvincular o usuário!`,
-                                    footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                                });
+                                throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                             }
                         }).catch(err => {
-                            Toast.fire({ icon: 'error', title: `Falha ao desvincular o usuário!` });
+                            SwalError.fire({
+                                title: `Falha ao desvincular o usuário!`,
+                                footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                            });
                         });
                     }
                 });
@@ -652,13 +652,13 @@
                         $('#modalSystem').modal('hide');
                         Toast.fire({ icon: 'success', title: `Sistema incluído com sucesso!` });
                     } else if (response?.data?.errors?.length > 0) {
-                        SwalError.fire({
-                            title: `Falha ao incluir o sistema!`,
-                            footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                        });
+                        throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                     }
                 }).catch(err => {
-                    Toast.fire({ icon: 'error', title: `Falha ao incluir sistema!` });
+                    SwalError.fire({
+                        title: `Falha ao incluir sistema!`,
+                        footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                    });
                 });
             },
             sortSystems() {
@@ -687,10 +687,7 @@
 
                 this.executeDB(query).then(response => {
                     if (response?.data?.errors?.length > 0) {
-                        SwalError.fire({
-                            title: `Falha ao atualizar sistema!`,
-                            footer: `Detalhe do Erro: ${response?.data?.errors[0]?.debugMessage}`
-                        });
+                        throw response?.data?.errors[0]?.message || response?.data?.errors[0]?.debugMessage;
                     } else {
                         const system = response?.data?.data?.update_system;
 
@@ -706,7 +703,10 @@
                         Toast.fire({ icon: 'success', title: `Sistema atualizado com sucesso!` });
                     }
                 }).catch(err => {
-                    Toast.fire({ icon: 'error', title: `Falha ao atualizar sistema!` });
+                    SwalError.fire({
+                        title: `Falha ao atualizar sistema!`,
+                        footer: `<strong>Erro:</strong>&nbsp; ${err}`
+                    });
                 });
             },
             usersSystem(system) {
