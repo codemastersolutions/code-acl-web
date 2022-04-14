@@ -1,5 +1,7 @@
 FROM codemastersolutions/php:7.4.8-fpm-alpine-3.12
 
+RUN usermod -u 1000 www-data
+
 RUN apk update && \
     apk add --no-cache yarn git openrc && \
     yarn global add @vue/cli && \
